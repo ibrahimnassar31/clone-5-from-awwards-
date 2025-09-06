@@ -1,0 +1,11 @@
+*** Begin Patch
+*** Update File: src/components/sections/float-mind-project.tsx
+@@
+-      const mediaBottomRight = root.querySelector(".media-br") as HTMLElement;
+-      const cols = gsap.utils.toArray<HTMLElement>(".reveal-col");
++      const mediaBottomRight = root.querySelector(".media-br") as HTMLElement;
++      const cols = gsap.utils.toArray<HTMLElement>(".reveal-col");
++      const scaffoldGlow = root.querySelector(".scaffold-glow") as HTMLElement;
++      const mediaStage = root.querySelector(".media-stage") as HTMLElement;
++      const cta = root.querySelector(".cta") as HTMLElement;
+*** End Patch
