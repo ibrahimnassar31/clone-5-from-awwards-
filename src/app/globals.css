@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Shadcn/UI Base Colors (Dark Theme) */
+  --color-background: #1a1a1a;
+  --color-foreground: #ffffff;
+
+  --color-card: #2a2a2a;
+  --color-card-foreground: #ffffff;
+
+  --color-popover: #2a2a2a;
+  --color-popover-foreground: #ffffff;
+
+  --color-primary: #ffffff; /* Accent Primary for buttons */
+  --color-primary-foreground: #1a1a1a; /* Accent Text for buttons */
+
+  --color-secondary: #2a2a2a;
+  --color-secondary-foreground: #ffffff;
+
+  --color-muted: #2a2a2a;
+  --color-muted-foreground: #b0b0b0;
+
+  --color-accent: #2a2a2a;
+  --color-accent-foreground: #ffffff;
+
+  --color-destructive: #ef4444; /* Example destructive, adjust if needed */
+  --color-destructive-foreground: #fafafa;
+
+  --color-border: #4a4a4a; /* Slightly lighter border for contrast */
+  --color-input: #2a2a2a;
+  --color-ring: #ffffff; /* Ring color for focus states */
+
+  /* Chart colors (placeholder, adjust if charts are present) */
+  --color-chart-1: #e67e22;
+  --color-chart-2: #2d8659;
+  --color-chart-3: #1e3a5f;
+  --color-chart-4: #f1c40f;
+  --color-chart-5: #e74c3c;
+
+  /* Sidebar colors (placeholder, adjust if sidebar is present) */
+  --color-sidebar: #1a1a1a;
+  --color-sidebar-foreground: #ffffff;
+  --color-sidebar-primary: #ffffff;
+  --color-sidebar-primary-foreground: #1a1a1a;
+  --color-sidebar-accent: #2a2a2a;
+  --color-sidebar-accent-foreground: #ffffff;
+  --color-sidebar-border: #4a4a4a;
+  --color-sidebar-ring: #ffffff;
+
+  /* Custom Design Tokens */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b0b0b0;
+  --color-project-overlay: #000000; /* Will be used with opacity */
+
+  --font-display: "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --radius-lg: 1.5rem; /* 24px for buttons and cards */
+  --radius-md: calc(1.5rem - 2px);
+  --radius-sm: calc(1.5rem - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
+@layer utilities {
+  body {
+    font-family: var(--font-body);
+  }
+}
+
+@layer base {
+  :root {
+    /* Shadcn/UI Base Variables (Dark Theme) */
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --popover: var(--color-popover);
+    --popover-foreground: var(--color-popover-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --destructive: var(--color-destructive);
+    --destructive-foreground: var(--color-destructive-foreground);
+    --border: var(--color-border);
+    --input: var(--color-input);
+    --ring: var(--color-ring);
+    --chart-1: var(--color-chart-1);
+    --chart-2: var(--color-chart-2);
+    --chart-3: var(--color-chart-3);
+    --chart-4: var(--color-chart-4);
+    --chart-5: var(--color-chart-5);
+    --radius: var(--radius-lg); /* Default radius for Shadcn components */
+    --sidebar-background: var(--color-sidebar);
+    --sidebar-foreground: var(--color-sidebar-foreground);
+    --sidebar-primary: var(--color-sidebar-primary);
+    --sidebar-primary-foreground: var(--color-sidebar-primary-foreground);
+    --sidebar-accent: var(--color-sidebar-accent);
+    --sidebar-accent-foreground: var(--color-sidebar-accent-foreground);
+    --sidebar-border: var(--color-sidebar-border);
+    --sidebar-ring: var(--color-sidebar-ring);
+  }
+
+  /* No .dark block needed as the theme is dark by default */
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-text-primary);
+  }
+
+  h1 {
+    font-size: 4rem; /* 64px */
+    font-weight: 700; /* Bold */
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: 3rem; /* 48px */
+    font-weight: 700; /* Bold */
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700; /* Bold */
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400; /* Regular */
+    line-height: 1.6;
+    color: var(--color-text-primary);
+  }
+
+  a {
+    color: var(--color-primary); /* Use primary for links */
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .text-sm {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 400; /* Regular */
+    color: var(--color-text-secondary);
+  }
+
+  .text-base {
+    font-size: 1rem; /* 16px */
+    font-weight: 400; /* Regular */
+    color: var(--color-text-primary);
+  }
+
+  .font-logo {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 500; /* Medium */
+    font-family: var(--font-display);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
